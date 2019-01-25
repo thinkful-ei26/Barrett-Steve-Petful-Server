@@ -27,6 +27,23 @@ app.get('/api/cat', function(req, res) {
   res.send(catObj)
 })
 
+app.get('/api/dog', function(req, res) {
+  let dogObj = {
+    imageURL:
+      'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
+    imageDescription:
+      'A smiling golden-brown golden retreiver listening to music.',
+    name: 'Zeus',
+    sex: 'Male',
+    age: 3,
+    breed: 'Golden Retriever',
+    story: 'Owner Passed away'
+  }
+  // let catJson = JSON.stringify(catObj)
+
+  res.send(dogObj)
+})
+
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
     skip: (req, res) => process.env.NODE_ENV === 'test'
