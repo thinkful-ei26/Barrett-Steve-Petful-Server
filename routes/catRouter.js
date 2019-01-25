@@ -1,27 +1,18 @@
-const express = require('express')
-const Router = express.Router()
+'use strict';
 
-let cats = [
-  {
-    imageURL:
-      'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
-    imageDescription:
-      'Orange bengal cat with black stripes lounging on concrete.',
-    name: 'Fluffy',
-    sex: 'Female',
-    age: 2,
-    breed: 'Bengal',
-    story: 'Thrown on the street'
-  }
-]
+const express = require('express');
+const Router = express.Router();
 
-Router.get('/', function(req, res) {
-  res.send(cats[0])
-})
+const {  CatQueue, peek } = require('../queue');
+
+Router.get('/', function(req, res, next) {
+  let cat = peek(CatQueue);
+  res.send(cat);
+});
 
 Router.delete('/', (req, res, next) => {
-  cats.shift()
-  res.sendStatus(204)
-})
+  CatQueue.dequeue();
+  res.sendStatus(204);
+});
 
-module.exports = Router
+module.exports = Router;
