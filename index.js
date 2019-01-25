@@ -10,25 +10,8 @@ const { dbConnect } = require('./db-mongoose')
 
 const app = express()
 
-app.get('/api/cat', function(req, res) {
-  let catObj = {
-    imageURL:
-      'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
-    imageDescription:
-      'Orange bengal cat with black stripes lounging on concrete.',
-    name: 'Fluffy',
-    sex: 'Female',
-    age: 2,
-    breed: 'Bengal',
-    story: 'Thrown on the street'
-  }
-  // let catJson = JSON.stringify(catObj)
-
-  res.send(catObj)
-})
-
-app.get('/api/dog', function(req, res) {
-  let dogObj = {
+let dogs = [
+  {
     imageURL:
       'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
     imageDescription:
@@ -39,9 +22,26 @@ app.get('/api/dog', function(req, res) {
     breed: 'Golden Retriever',
     story: 'Owner Passed away'
   }
-  // let catJson = JSON.stringify(catObj)
+]
+let cats = [
+  {
+    imageURL:
+      'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
+    imageDescription:
+      'Orange bengal cat with black stripes lounging on concrete.',
+    name: 'Fluffy',
+    sex: 'Female',
+    age: 2,
+    breed: 'Bengal',
+    story: 'Thrown on the street'
+  }
+]
+app.get('/api/cat', function(req, res) {
+  res.send(cats[0])
+})
 
-  res.send(dogObj)
+app.get('/api/dog', function(req, res) {
+  res.send(dogs[0])
 })
 
 app.use(
